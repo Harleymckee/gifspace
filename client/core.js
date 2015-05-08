@@ -16,6 +16,12 @@ app.directive('theImage', function() {
 
 app.controller('ImgController', ['$scope', '$http', function($scope, $http) {	
 
+	function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+
 
 var here = this, sponseArr = [];
 
@@ -33,7 +39,10 @@ var tagg = this.tag;
 
 
 		var re = response.data, sponse = re.data;
-		console.log(response);
+
+	sponse.topp = getRandomInt(-10, 50) + 'vh';
+	sponse.leftt = getRandomInt(-10, 50) + 'vw';
+
 		sponseArr.push(sponse);
 	here.pics = sponseArr;
 
