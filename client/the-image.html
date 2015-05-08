@@ -1,0 +1,82 @@
+
+
+
+<div id="wrap">
+<div id="supguys">
+
+
+<form>
+
+<input type="submit" ng-click="imgCtrl.changeImage()"> </button>
+
+
+<button ng-click="imgCtrl.clear()"> </button>
+
+<input type="text" ng-model="imgCtrl.tag"></input>
+
+</form>
+
+
+<div id="giphy">
+
+<a href="http://giphy.com/" target="_blank">
+
+<img src="200.gif" width="152px" height="35px" style="margin-left: -20px;">
+
+</a>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="pichold" ng-repeat="pic in imgCtrl.pics">
+
+
+		<div class="pic" >
+		<img ng-src="{{pic.image_url}}">
+		</div>
+
+		<script>
+
+		(function() {
+
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+
+
+		$("div.pic").draggable({
+			stack: ".pic",
+			scroll: false, 
+			create: function( event, ui ) {
+				
+				var indArr = [];
+				$('.pic').each(function() {
+
+					indArr.push($(this).zIndex());
+					
+
+				});
+
+				var tallest = Array.max(indArr);
+			
+				$(this).zIndex(tallest);
+
+			}
+
+		});
+
+		})();
+
+		</script>
+
+
+
+</div>
+
+
+
+
