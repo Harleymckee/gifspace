@@ -3,26 +3,74 @@ function getRandomInt(min, max) {
 }
 
 
+
+
+
+var TheDisplay = React.createClass({
+
+		render: function() {
+	
+	var picNodes = this.props.data.map(function (pic) {
+		return ( 
+
+		<div key={pic.id}>
+		{pic}
+		</div>
+
+		);
+	
+    }); 
+
+
+  return (
+
+		 <div>
+     		{picNodes}
+        </div>
+    	);
+	}
+
+
+
+});
+
+
+
+
+
 var TheControls = React.createClass({
 
-
+  getInitialState: function() {
+    return {data: []};
+  },
 
   redButton: function() {
 	    var text = this.refs.text.getDOMNode().value.trim();
-	    if (!text) {
-	      return;
-	    }
-	//    this.props.onSubmit({text: text});
 
-		alert(text);
+	    $.ajax({
+	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
+      		dataType: 'json',
+		      success: function(data) {
+		  this.setState({data: this.state.data.concat([data])});
+		    
 
-//	    this.refs.text.getDOMNode().value = '';
+		      }.bind(this),
+		      error: function(xhr, status, err) {
+		        console.error(this.props.url, status, err.toString());
+		      }.bind(this)
+   			
+   			 });
+
+
+
+
+
 	  },
   blueButton: function() { 
 
 			if (confirm('Are ya sure?')) {
-				//	sponseArr = [];
-				//	here.pics = [];
+			
+			  this.setState({data: []}); 
 
 				} else { 
 					return;
@@ -36,6 +84,7 @@ var TheControls = React.createClass({
 
 
     <div id="wrap">
+    	<TheDisplay data={this.state.data} />
 	<div id="supguys">
 		<button onClick={this.redButton}>
 		</button>
@@ -56,27 +105,13 @@ var TheControls = React.createClass({
 });
 
 
-var TheDisplay = React.createClass({
-
-		render: function() {
-    return (
-       		<div> sadf </div>
-    	
-    	);
-	}
-
-
-
-});
-
-
 
 var Everything = React.createClass({
 
 	render: function() {
+
     return (
     	<div>
-    		<TheDisplay />
        		<TheControls />
        	</div>
     	

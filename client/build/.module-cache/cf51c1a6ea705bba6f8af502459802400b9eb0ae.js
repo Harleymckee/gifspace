@@ -69,8 +69,8 @@ var TheControls = React.createClass({displayName: "TheControls",
   blueButton: function() { 
 
 			if (confirm('Are ya sure?')) {
-			
-			  this.setState({data: []}); 
+				//	sponseArr = [];
+				//	here.pics = [];
 
 				} else { 
 					return;

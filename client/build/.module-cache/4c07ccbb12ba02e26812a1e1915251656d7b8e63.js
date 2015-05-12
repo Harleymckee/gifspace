@@ -70,7 +70,7 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 			if (confirm('Are ya sure?')) {
 			
-			  this.setState({data: []}); 
+			  this.setState({data: this.state.data.concat([data])});
 
 				} else { 
 					return;

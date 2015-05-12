@@ -11,13 +11,9 @@ var TheDisplay = React.createClass({displayName: "TheDisplay",
 		render: function() {
 	
 	var picNodes = this.props.data.map(function (pic) {
-		return ( 
-
-		React.createElement("div", {key: pic.id}, 
-		pic
+		React.createElement("div", null, 
+		pic.image_url
 		)
-
-		);
 	
     }); 
 
@@ -25,7 +21,7 @@ var TheDisplay = React.createClass({displayName: "TheDisplay",
   return (
 
 		 React.createElement("div", null, 
-     		picNodes
+     		this.props.data
         )
     	);
 	}
@@ -69,8 +65,8 @@ var TheControls = React.createClass({displayName: "TheControls",
   blueButton: function() { 
 
 			if (confirm('Are ya sure?')) {
-			
-			  this.setState({data: []}); 
+				//	sponseArr = [];
+				//	here.pics = [];
 
 				} else { 
 					return;

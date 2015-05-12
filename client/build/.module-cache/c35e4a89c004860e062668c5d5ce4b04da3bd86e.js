@@ -3,41 +3,6 @@ function getRandomInt(min, max) {
 }
 
 
-
-
-
-var TheDisplay = React.createClass({displayName: "TheDisplay",
-
-		render: function() {
-	
-	var picNodes = this.props.data.map(function (pic) {
-		return ( 
-
-		React.createElement("div", {key: pic.id}, 
-		pic
-		)
-
-		);
-	
-    }); 
-
-
-  return (
-
-		 React.createElement("div", null, 
-     		picNodes
-        )
-    	);
-	}
-
-
-
-});
-
-
-
-
-
 var TheControls = React.createClass({displayName: "TheControls",
 
   getInitialState: function() {
@@ -51,9 +16,8 @@ var TheControls = React.createClass({displayName: "TheControls",
 	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
       		dataType: 'json',
 		      success: function(data) {
-		  this.setState({data: this.state.data.concat([data])});
-		    
-
+		        this.setState({data: data});
+		       console.log(this.state.data);
 		      }.bind(this),
 		      error: function(xhr, status, err) {
 		        console.error(this.props.url, status, err.toString());
@@ -69,8 +33,8 @@ var TheControls = React.createClass({displayName: "TheControls",
   blueButton: function() { 
 
 			if (confirm('Are ya sure?')) {
-			
-			  this.setState({data: []}); 
+				//	sponseArr = [];
+				//	here.pics = [];
 
 				} else { 
 					return;
@@ -106,10 +70,39 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
 
+
+
+var TheDisplay = React.createClass({displayName: "TheDisplay",
+
+		render: function() {
+
+ var picNodes = this.props.data.map(function (pic) {
+      return (
+					React.createElement("div", {className: "pichold"}, 
+			      	React.createElement("div", {className: "pic"}, 
+								React.createElement("img", null)
+					)
+					)
+      );
+    }); 
+
+
+      return (
+		      React.createElement("div", null, 
+		      	picNodes
+		      )
+    	);
+	}
+
+
+
+});
+
+
+
 var Everything = React.createClass({displayName: "Everything",
 
 	render: function() {
-
     return (
     	React.createElement("div", null, 
        		React.createElement(TheControls, null)

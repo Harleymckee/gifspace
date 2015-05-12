@@ -3,57 +3,19 @@ function getRandomInt(min, max) {
 }
 
 
-
-
-
-var TheDisplay = React.createClass({displayName: "TheDisplay",
-
-		render: function() {
-	
-	var picNodes = this.props.data.map(function (pic) {
-		return ( 
-
-		React.createElement("div", {key: pic.id}, 
-		pic
-		)
-
-		);
-	
-    }); 
-
-
-  return (
-
-		 React.createElement("div", null, 
-     		picNodes
-        )
-    	);
-	}
-
-
-
-});
-
-
-
-
-
 var TheControls = React.createClass({displayName: "TheControls",
 
-  getInitialState: function() {
-    return {data: []};
-  },
+
 
   redButton: function() {
 	    var text = this.refs.text.getDOMNode().value.trim();
 
 	    $.ajax({
-	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
+	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + tagg,
       		dataType: 'json',
 		      success: function(data) {
-		  this.setState({data: this.state.data.concat([data])});
-		    
-
+		        //this.setState({data: data});
+		        console.log(data);
 		      }.bind(this),
 		      error: function(xhr, status, err) {
 		        console.error(this.props.url, status, err.toString());
@@ -63,14 +25,12 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
 
-
-
 	  },
   blueButton: function() { 
 
 			if (confirm('Are ya sure?')) {
-			
-			  this.setState({data: []}); 
+				//	sponseArr = [];
+				//	here.pics = [];
 
 				} else { 
 					return;
@@ -84,7 +44,6 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
     React.createElement("div", {id: "wrap"}, 
-    	React.createElement(TheDisplay, {data: this.state.data}), 
 	React.createElement("div", {id: "supguys"}, 
 		React.createElement("button", {onClick: this.redButton}
 		), 
@@ -105,13 +64,35 @@ var TheControls = React.createClass({displayName: "TheControls",
 });
 
 
+var TheDisplay = React.createClass({displayName: "TheDisplay",
+
+		render: function() {
+    return (
+       		
+
+			React.createElement("div", {className: "pichold"}, 
+
+
+					React.createElement("div", {className: "pic"}, 
+					React.createElement("img", null)
+					)
+			)
+    	
+    	);
+	}
+
+
+
+});
+
+
 
 var Everything = React.createClass({displayName: "Everything",
 
 	render: function() {
-
     return (
     	React.createElement("div", null, 
+    		React.createElement(TheDisplay, null), 
        		React.createElement(TheControls, null)
        	)
     	
