@@ -17,6 +17,11 @@ app.directive('theImage', function() {
 app.controller('ImgController', ['$scope', '$http', function($scope, $http) {	
 
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
 
 
 var here = this, sponseArr = [];
