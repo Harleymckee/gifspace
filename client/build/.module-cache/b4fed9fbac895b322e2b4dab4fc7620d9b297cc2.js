@@ -94,6 +94,17 @@ var TheDisplay = React.createClass({displayName: "TheDisplay",
 
 
 	
+	{/* var picNodes = this.props.data.map(function (pic) {
+		return ( 
+
+		<div>
+		{pic.image_url}
+		</div>
+
+		);
+	
+    }); */}
+
 
 
 

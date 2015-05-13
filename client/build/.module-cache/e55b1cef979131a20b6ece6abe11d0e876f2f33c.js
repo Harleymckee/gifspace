@@ -6,6 +6,39 @@ function getRandomInt(min, max) {
 
 
 
+var TheDisplay = React.createClass({displayName: "TheDisplay",
+
+		render: function() {
+
+var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
+  render: function() {
+    return React.createElement("li", null, this.props.data.text);
+  }
+});
+	
+	var picNodes = this.props.data.map(function (pic) {
+		return ( 
+
+		React.createElement("div", {key: pic.id}, 
+		pic
+		)
+
+		);
+	
+    }); 
+
+
+  return (
+
+		 React.createElement("div", null, 
+     		picNodes
+        )
+    	);
+	}
+
+
+
+});
 
 
 
@@ -22,12 +55,10 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 	    $.ajax({
 	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
-	  		 type: 'GET',
       		dataType: 'json',
 		      success: function(data) {
-
-			console.log(data.data);		    
-		    this.setState({data: this.state.data.concat([data.data])});
+		  this.setState({data: this.state.data.concat([data])});
+		    
 
 		      }.bind(this),
 		      error: function(xhr, status, err) {
@@ -81,43 +112,25 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
 
-var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
-  render: function() {
-    return React.createElement("img", {src: this.props.data.image_url});
-  }
-});
+var Everything = React.createClass({displayName: "Everything",
 
+	render: function() {
 
-var TheDisplay = React.createClass({displayName: "TheDisplay",
-
-		render: function() {
-
-
-	
-
-
-
-  return (
-
-	 React.createElement("div", null, 
-        this.props.data.map(function(result) {
-           return React.createElement(ListItemWrapper, {key: result.id, data: result});
-        })
-      )
-
+    return (
+    	React.createElement("div", null, 
+       		React.createElement(TheControls, null)
+       	)
+    	
     	);
 	}
 
 
-
 });
 
 
 
-
-
 React.render(
-  	React.createElement(TheControls, null),
+  	React.createElement(Everything, null),
   document.getElementById('content')
 ); 
 

@@ -83,7 +83,7 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
   render: function() {
-    return React.createElement("img", {src: this.props.data.image_url});
+    return React.createElement("div", null, this.props.data.id);
   }
 });
 
@@ -94,6 +94,17 @@ var TheDisplay = React.createClass({displayName: "TheDisplay",
 
 
 	
+	{/* var picNodes = this.props.data.map(function (pic) {
+		return ( 
+
+		<div>
+		{pic.image_url}
+		</div>
+
+		);
+	
+    }); */}
+
 
 
 

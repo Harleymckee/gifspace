@@ -6,33 +6,6 @@ function getRandomInt(min, max) {
 
 
 
-var TheDisplay = React.createClass({
-
-		render: function() {
-	
-	var picNodes = this.props.data.map(function (pic) {
-		return ( 
-
-		<div key={pic.id}>
-		{pic}
-		</div>
-
-		);
-	
-    }); 
-
-
-  return (
-
-		 <div>
-     		{picNodes}
-        </div>
-    	);
-	}
-
-
-
-});
 
 
 
@@ -49,10 +22,12 @@ var TheControls = React.createClass({
 
 	    $.ajax({
 	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
+	  		 type: 'GET',
       		dataType: 'json',
 		      success: function(data) {
-		  this.setState({data: this.state.data.concat([data])});
-		    
+
+			console.log(data.data);		    
+		    this.setState({data: this.state.data.concat([data.data])});
 
 		      }.bind(this),
 		      error: function(xhr, status, err) {
@@ -106,25 +81,43 @@ var TheControls = React.createClass({
 
 
 
-var Everything = React.createClass({
+var ListItemWrapper = React.createClass({
+  render: function() {
+    return <img src={this.props.data.image_url} />;
+  }
+});
 
-	render: function() {
 
-    return (
-    	<div>
-       		<TheControls />
-       	</div>
-    	
+var TheDisplay = React.createClass({
+
+		render: function() {
+
+
+	
+
+
+
+  return (
+
+	 <div>
+        {this.props.data.map(function(result) {
+           return <ListItemWrapper key={result.id} data={result}/>;
+        })}
+      </div>
+
     	);
 	}
+
 
 
 });
 
 
 
+
+
 React.render(
-  	<Everything />,
+  	<TheControls />,
   document.getElementById('content')
 ); 
 

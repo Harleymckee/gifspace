@@ -25,9 +25,9 @@ var TheControls = React.createClass({displayName: "TheControls",
 	  		 type: 'GET',
       		dataType: 'json',
 		      success: function(data) {
-
-			console.log(data.data);		    
-		    this.setState({data: this.state.data.concat([data.data])});
+		//  this.setState({data: this.state.data.concat([data])});
+		    
+		    this.setState({data: this.state.data.concat([data])});
 
 		      }.bind(this),
 		      error: function(xhr, status, err) {
@@ -83,7 +83,7 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
   render: function() {
-    return React.createElement("img", {src: this.props.data.image_url});
+    return React.createElement("div", null, this.props.data);
   }
 });
 
@@ -94,6 +94,17 @@ var TheDisplay = React.createClass({displayName: "TheDisplay",
 
 
 	
+	{/* var picNodes = this.props.data.map(function (pic) {
+		return ( 
+
+		<div>
+		{pic.image_url}
+		</div>
+
+		);
+	
+    }); */}
+
 
 
 
