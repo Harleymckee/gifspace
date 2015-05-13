@@ -4,7 +4,7 @@ function getRandomInt(min, max) {
 
 
 
-Array.max = function( array ){
+Array.prototype.max = function( array ){
     return Math.max.apply( Math, array );
 };
 

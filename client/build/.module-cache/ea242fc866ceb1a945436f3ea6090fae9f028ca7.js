@@ -4,7 +4,7 @@ function getRandomInt(min, max) {
 
 
 
-Array.max = function( array ){
+Array.prototype.max = function( array ){
     return Math.max.apply( Math, array );
 };
 
@@ -41,6 +41,12 @@ var TheControls = React.createClass({displayName: "TheControls",
 			console.log(data.data);		    
 		    this.setState({data: this.state.data.concat([data.data])});
 
+		      }.bind(this),
+		      error: function(xhr, status, err) {
+		        console.error(this.props.url, status, err.toString());
+		      }.bind(this)
+   			
+   			 });
 
 		$("div.pic").draggable({
 			stack: ".pic",
@@ -62,18 +68,6 @@ var TheControls = React.createClass({displayName: "TheControls",
 			}
 
 		});
-
-
-
-
-		      }.bind(this),
-		      error: function(xhr, status, err) {
-		        console.error(this.props.url, status, err.toString());
-		      }.bind(this)
-   			
-   			 });
-
-
 
 
 

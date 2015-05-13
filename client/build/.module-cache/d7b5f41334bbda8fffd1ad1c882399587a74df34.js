@@ -4,7 +4,7 @@ function getRandomInt(min, max) {
 
 
 
-Array.max = function( array ){
+Array.prototype.max = function( array ){
     return Math.max.apply( Math, array );
 };
 
@@ -22,26 +22,7 @@ var TheControls = React.createClass({displayName: "TheControls",
   },
 
   componentDidMount: function() {
-
-
-
-
-  
-  },
-
-  redButton: function() {
-	    var text = this.refs.text.getDOMNode().value.trim();
-
-	    $.ajax({
-	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
-	  		 type: 'GET',
-      		dataType: 'json',
-		      success: function(data) {
-
-			console.log(data.data);		    
-		    this.setState({data: this.state.data.concat([data.data])});
-
-
+/*
 		$("div.pic").draggable({
 			stack: ".pic",
 			scroll: false, 
@@ -61,10 +42,23 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 			}
 
-		});
+		});*/
 
 
+  
+  },
 
+  redButton: function() {
+	    var text = this.refs.text.getDOMNode().value.trim();
+
+	    $.ajax({
+	  		url: 'http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + text,
+	  		 type: 'GET',
+      		dataType: 'json',
+		      success: function(data) {
+
+			console.log(data.data);		    
+		    this.setState({data: this.state.data.concat([data.data])});
 
 		      }.bind(this),
 		      error: function(xhr, status, err) {
