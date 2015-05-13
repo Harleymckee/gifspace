@@ -99,7 +99,7 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
 
-		  componentDidMount: function() {
+		  getInitialState: function() {
 
 
 

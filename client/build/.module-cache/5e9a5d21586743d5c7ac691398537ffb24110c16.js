@@ -98,8 +98,21 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
 var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
+  render: function() {
+    return (
+    	React.createElement("div", {className: "pichold"}, 
+    	React.createElement("div", {className: "pic"}, 
+    	React.createElement("img", {src: this.props.data.image_url})
+    	)
+    	)
+    );
+  }
+});
 
-		  componentDidMount: function() {
+
+var TheDisplay = React.createClass({displayName: "TheDisplay",
+
+	  componentDidUpdate: function() {
 
 
 
@@ -125,21 +138,6 @@ var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
 		});
   
   },
-  render: function() {
-    return (
-    	React.createElement("div", {className: "pichold"}, 
-    	React.createElement("div", {className: "pic"}, 
-    	React.createElement("img", {src: this.props.data.image_url})
-    	)
-    	)
-    );
-  }
-});
-
-
-var TheDisplay = React.createClass({displayName: "TheDisplay",
-
-
 
 		render: function() {
 

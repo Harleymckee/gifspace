@@ -1,4 +1,10 @@
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+
 var app = angular.module('snowZone', []);
 
 app.directive('theImage', function() {

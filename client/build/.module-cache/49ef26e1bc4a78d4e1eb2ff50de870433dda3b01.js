@@ -21,7 +21,13 @@ var TheControls = React.createClass({displayName: "TheControls",
     return {data: []};
   },
 
+  componentDidMount: function() {
 
+
+
+
+  
+  },
 
   redButton: function() {
 
@@ -38,6 +44,26 @@ var TheControls = React.createClass({displayName: "TheControls",
 		    this.setState({data: this.state.data.concat([data.data])});
 
 
+	$("div.pic").draggable({
+			stack: ".pic",
+			scroll: false, 
+			create: function( event, ui ) {
+				
+				var indArr = [];
+				$('.pic').each(function() {
+
+					indArr.push($(this).zIndex());
+					
+
+				});
+
+				var tallest = Array.max(indArr);
+			
+				$(this).zIndex(tallest);
+
+			}
+
+		});
 
 
 		      }.bind(this),
@@ -46,7 +72,7 @@ var TheControls = React.createClass({displayName: "TheControls",
 		      }.bind(this)
 
 
-
+		     
    			
    			 });
 
@@ -98,33 +124,6 @@ var TheControls = React.createClass({displayName: "TheControls",
 
 
 var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
-
-		  componentDidMount: function() {
-
-
-
-	$("div.pic").draggable({
-			stack: ".pic",
-			scroll: false, 
-			create: function( event, ui ) {
-				
-				var indArr = [];
-				$('.pic').each(function() {
-
-					indArr.push($(this).zIndex());
-					
-
-				});
-
-				var tallest = Array.max(indArr);
-			
-				$(this).zIndex(tallest);
-
-			}
-
-		});
-  
-  },
   render: function() {
     return (
     	React.createElement("div", {className: "pichold"}, 
@@ -138,8 +137,6 @@ var ListItemWrapper = React.createClass({displayName: "ListItemWrapper",
 
 
 var TheDisplay = React.createClass({displayName: "TheDisplay",
-
-
 
 		render: function() {
 
