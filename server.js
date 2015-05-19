@@ -1,8 +1,9 @@
 var express = require('express');
-var path = require('path'); 
+var path = require('path');
 var fs = require('fs');
 var app = express();
 var http = require('http').Server(app);
+var request = require('request');
 
 
 
@@ -12,16 +13,26 @@ app.use(express.static(path.join(__dirname + '/client')));
 
 
 
-function home (req, res) {
+app.get('/', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('index.html');
-};
+});
 
-app.get('/', home);
+app.get('/giphy/:term', function(req, res) {
+
+
+  request('http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + req.params.term, function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body) // Show the HTML for the Google homepage.
+  }
+})
 
 
 
-var port = process.env.PORT || 4444; 
+});
+
+
+var port = process.env.PORT || 4444;
 
 
 app.listen(port, function() {

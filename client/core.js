@@ -7,14 +7,14 @@ app.directive('theImage', function() {
 			restrict: 'E',
 			templateUrl: 'the-image.html',
 			controller: 'ImgController',
-			controllerAs: 'imgCtrl' 
+			controllerAs: 'imgCtrl'
 
 		};
 	});
 
 
 
-app.controller('ImgController', ['$scope', '$http', function($scope, $http) {	
+app.controller('ImgController', ['$scope', '$http', function($scope, $http) {
 
 
 
@@ -30,8 +30,10 @@ this.changeImage = function() {
 
 var tagg = this.tag;
 
+// http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=
 
-$http.get('http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + tagg).then( function(response, err) {
+
+$http.get('/giphy/' + tagg).then( function(response, err) {
 
 
 		var re = response.data, sponse = re.data;
@@ -44,8 +46,8 @@ $http.get('http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag='
 
 
 
-	
-	}); 
+
+	});
 
 
 };
@@ -59,7 +61,7 @@ if (confirm('Are ya sure?')) {
 		sponseArr = [];
 		here.pics = [];
 
-	} else { 
+	} else {
 		return;
 	}
 
@@ -70,6 +72,3 @@ if (confirm('Are ya sure?')) {
 
 
 }]);
-
-
-

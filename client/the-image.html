@@ -65,19 +65,19 @@ Array.max = function( array ){
 
 		$("div.pic").draggable({
 			stack: ".pic",
-			scroll: false, 
+			scroll: false,
 			create: function( event, ui ) {
-				
+
 				var indArr = [];
 				$('.pic').each(function() {
 
 					indArr.push($(this).zIndex());
-					
+
 
 				});
 
 				var tallest = Array.max(indArr);
-			
+
 				$(this).zIndex(tallest);
 
 			}
@@ -91,7 +91,3 @@ Array.max = function( array ){
 
 
 </div>
-
-
-
-
