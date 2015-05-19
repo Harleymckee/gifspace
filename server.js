@@ -18,13 +18,15 @@ app.get('/', function (req, res) {
   res.render('index.html');
 });
 
+var sec = require('./config/secrets.js');
+
+
 app.get('/giphy/:term', function(req, res) {
 
+request(sec.url + req.params.term, function (error, response, body) {
 
-  request('http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=' + req.params.term, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body) // Show the HTML for the Google homepage.
-  }
+    res.send(body);
+
 })
 
 

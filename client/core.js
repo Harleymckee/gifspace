@@ -1,3 +1,14 @@
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+
+
 
 var app = angular.module('snowZone', []);
 
@@ -30,7 +41,7 @@ this.changeImage = function() {
 
 var tagg = this.tag;
 
-// http://api.giphy.com/v1/gifs/random?api_key=5xaOcLHMQRWQPesDyc8&tag=
+
 
 
 $http.get('/giphy/' + tagg).then( function(response, err) {
